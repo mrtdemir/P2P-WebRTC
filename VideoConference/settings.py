@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'VideoConference.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd91ckjvm7oqlod',
-        'USER':'ckoumftuiegujm',
-        'PASSWORD':'69fed55724e9453a439b44bb58205424111b304704bb1e139e56685a78f0599b',
-        'HOST':'ec2-79-125-30-28.eu-west-1.compute.amazonaws.com',
-        'PORT':'5432',
+        'NAME': 'xxx',
+        'USER':'xxx',
+        'PASSWORD':'xxx',
+        'HOST':'xxx',
+        'PORT':'xxx',
     }
 }
 
