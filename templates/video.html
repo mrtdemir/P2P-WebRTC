@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+    <!-- <script>
+        var numbTurnCredential = '{{numb_turn_credential}}';
+        var numbTurnUsername = '{{numb_turn_username}}';
+    </script> -->
+    <script>
+        var roomName = {{room_name_json}}
+        var passcode = {{passcode}}
+        var username = {{username}}
+        var userStatus = {{userStatus}}
+    </script>
+    <script type="text/javascript" src="{% static 'js/websocket-adapter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
+{% endblock %}

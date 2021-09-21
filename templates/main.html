@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Video Conference</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row" style="padding-top: 50px;">
+			<div class="col-md-3" id="chat">
+					<div class="col-md-12">
+						<div class ="card">
+						<div class = "card-header">
+							<p id = "roomurl"></p>
+							<p>Room ID : {{room_name_json}}</p>
+							<p>Room Passcode : {{passcode}}</p>
+						</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+					<div class="card">
+					
+					<div class="card-header">
+					<h5> CHAT </h5>
+					</div>
+					<div class="card-body" id="messages">
+						<ul class="list-group" id="message-list"></ul>
+						<div id="ct" class="input-group mb-3">
+							<input id="msg" type="text" class="form-control"  aria-describedby="basic-addon2">
+							<div class="input-group-append">
+								<button id="btn-send-msg" class="btn btn-outline-secondary" type="button">Send</button>
+							</div>
+						</div>
+					</div>
+					</div>	
+					
+				</div>
+			</div>
+
+			<div class="col-md-9 row" id="video-container">
+				<div class="col-md-6">
+					<div class="card text-center">
+
+						<div class="card-header">
+						<h3 style="text-align:center;text-transform: uppercase;" class="col-md-12" id="label-username"></h3>
+						<p style="text-align:center;" class="col-md-12" id="label-status"></p>
+						</div>
+						
+						<div class="card-body">
+						<video style="object-fit:cover; width:550px; height:300px" class="col-md-12" id="local-video" autoplay playsinline></video>
+						</div>
+						<div class="card-footer">
+							<div class="row">
+							
+							<div class="col-md-6"><button style="float:right;" id="btn-toggle-audio" class="btn btn-info btn-sm">Audio Mute</button></div>
+							<div class="col-md-6"><button style="float:left;" id="btn-toggle-video" class="btn btn-info btn-sm">Video Off</button></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+    {% block content %}
+    {% endblock %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

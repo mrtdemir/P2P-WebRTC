@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html>
+<head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <meta charset="utf-8"/>
+    <title>Video Conference</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body class="text-center">
+    <div class="container" style="margin-top:250px">
+        <div class="row">
+            <div class="col-md-6" style="margin: auto;">
+                <div class="card">
+                    <div class="card-body">
+                        <form method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{create_form.media}}
+                            {{create_form|crispy}}
+                            <br>
+                            <button class="btn btn-info" type="submit">Create Room</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin: auto;">
+                <div class="card">
+                    <div class="card-body">
+                        <form method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{join_form.media}}
+                            {{join_form|crispy}}
+                            <br>
+                            <button class="btn btn-info" type="submit">Join Room</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{% if messages %}
+<script>
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "0",
+        "hideDuration": "0",
+        "timeOut": "0",
+        "extendedTimeOut": "0",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                toastr.{{ message.tags }}('{{ message }}')
+            {% elif message.tags == 'info' %}
+                toastr.{{ message.tags }}('{{ message }}')
+            {% elif message.tags == 'warning' %}
+                toastr.{{ message.tags }}('{{ message }}')
+            {% elif message.tags == 'error' %}
+                toastr.{{ message.tags }}('{{ message }}')
+            {% endif %}
+        {% endfor %}
+</script>
+{% endif %}
+
+<script>
+$(document).ready(function(){
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: '/',
+        success: function(response) {
+             console.log(response.room);
+             $('#test').append(response.data);
+       }
+    });
+});
+</script>
+
+</body>
+</html>
